@@ -18,8 +18,8 @@ const styles = StyleSheet.create({
   }),
 
   profileContainer: {
-    width: 50,
-    height: 50,
+    width: 40,
+    height: 40,
     backgroundColor: COLORS.white,
     borderRadius: 30,
     justifyContent: "center",
@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
     height: '100%',
     resizeMode: 'contain',
   }),
-
 });
 
 export default styles;

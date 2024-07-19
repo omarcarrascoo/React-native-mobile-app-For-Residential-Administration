@@ -1,20 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, ScrollView, View, Text } from 'react-native';
+import { SafeAreaView, ScrollView, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import axios from 'axios';
 import { COLORS, SIZES } from '../constants/theme';
 import ScreenHeaderLogo from '../components/common/header/ScreenHeaderLogo';
 import ScreenHeaderProfile from '../components/common/header/ScreenHeaderProfile';
 import images from '../constants/images';
-import BrainWareChallengesResume from '../components/home/BrainwareChallengesResume/BrainwareChallengesResume';
-import BrainWareBitacoreList from '../components/home/Brainware_bitacor_list/BrainWareBitacoreList';
+import { Stack, useRouter } from 'expo-router';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+import icons from '../constants/icons';
+import MainHeader from '../components/common/header/MainHeader';
+import EventListerSmallCard from '../components/eventsLister/EventListerSmallCard';
+import AnnauncementLister from '../components/announcementLister/AnnauncementLister';
 import MainFooter from '../components/common/footer/MainFooter';
-import { Stack } from 'expo-router';
 
 const Home = () =>{
-    console.log("Hola home");
     const [challenges, setChallenges] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const router = useRouter()
 
     useEffect(() => {
         const fetchChallenges = async () => {
@@ -29,10 +32,7 @@ const Home = () =>{
             }
         };
 
-        fetchChallenges();
     }, []);
-
-
 
     if (loading) {
         return (
@@ -40,11 +40,6 @@ const Home = () =>{
                 <Stack.Screen
                 options={{
                     autoHideHomeIndicator:true,
-                    // headerStyle: { backgroundColor: COLORS.lightWhite, height: 3000, padding: SIZES.medium, },
-                    // headerShadowVisible: false,
-                    // headerLeft: () => <ScreenHeaderLogo imageUrl={images.logoBrainWare} dimension='100%' />,
-                    // headerTitle: () => "",
-                    // headerRight: () => <ScreenHeaderProfile imageUrl={"https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg"} dimension='100%' />,
                     header: () =>(
                         <View style={{minHeight:100, margin:0, paddingTop:70, alignItems:'center',  backgroundColor:COLORS.lightWhite}}>
                             <View style={{justifyContent:'space-between', flexDirection: "row", width:"92%"}}>
@@ -87,48 +82,61 @@ const Home = () =>{
     }
 
     return (
-        <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
+        <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.darkWhite }}>
             <Stack.Screen
                 options={{
                     autoHideHomeIndicator:true,
-                    // headerStyle: { backgroundColor: COLORS.lightWhite, height: 3000, padding: SIZES.medium, },
-                    // headerShadowVisible: false,
-                    // headerLeft: () => <ScreenHeaderLogo imageUrl={images.logoBrainWare} dimension='100%' />,
-                    // headerTitle: () => "",
-                    // headerRight: () => <ScreenHeaderProfile imageUrl={"https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg"} dimension='100%' />,
                     header: () =>(
-                        <View style={{minHeight:100, margin:0, paddingTop:70, alignItems:'center',  backgroundColor:COLORS.lightWhite}}>
-                            <View style={{justifyContent:'space-between', flexDirection: "row", width:"92%"}}>
-                                <ScreenHeaderLogo imageUrl={images.logoBrainWare} dimension='100%' />
-                                <ScreenHeaderProfile imageUrl={"http://localhost:9090/public/images/pp.png"} dimension = '100%'/>
-                            </View>
-                        </View>
+                        <MainHeader/>
                     )
                 }}
             />
-                {/* Header */}
-                {/* <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: SIZES.medium }}>
-                    <ScreenHeaderLogo imageUrl={images.logoBrainWare} dimension='80%' />
-                    <ScreenHeaderProfile imageUrl={"https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg"} dimension='100%' />
-                </View> */}
-            <ScrollView showsVerticalScrollIndicator={false}>
-                <View
-                    style={{
-                        flex:1,
-                        paddingHorizontal: SIZES.medium
-                    }}
-                >
-                    {/* Challenges Resume */}
-                    <BrainWareChallengesResume challenges={challenges} />
-                    {/* Bitacore List */}
-                    <BrainWareBitacoreList challenges={challenges} />
-                </View>
-            </ScrollView>
-            <MainFooter />
+            <View showsVerticalScrollIndicator={false} style={styles.container}>
+               <View style={styles.subSection}>
+                    <View style={styles.subtitleContainer}>
+                        <Text style={styles.subtitle}>Próximos eventos</Text>
+                        <TouchableOpacity onPress={()=>{router.push('/calendario')}}><Text style={styles.link}>Ver Calendario</Text></TouchableOpacity>
+                    </View>
+                    <EventListerSmallCard/>
+               </View>
+               <View style={{minHeight:0}}/>
+               <View style={styles.subSection}>
+                    <View style={styles.subtitleContainer}>
+                        <Text style={styles.subtitle}>Anuncios recientes</Text>
+                        <TouchableOpacity onPress={()=>{router.push('/cupones')}}><Text style={styles.link}>Ver mas</Text></TouchableOpacity>
+                    </View>
+                    <AnnauncementLister/>
+               </View>
+            </View>
+            <MainFooter/>
         </SafeAreaView>
     );
 }
 
+const styles = StyleSheet.create({
+    container:{
+        paddingHorizontal: SIZES.large,
+        paddingTop: SIZES.small
+    },
+    subSection:{
+        paddingTop:20,
+    },
+    subtitleContainer:{
+        flexDirection:'row', 
+        alignItems:'center', 
+        justifyContent:'space-between',
+        marginBottom: SIZES.large
+    },
+    subtitle:{
+        fontSize:22,
+        color:COLORS.MainText,
+    },
+    link:{
+        color:COLORS.MainPurple,
+       textDecorationLine:'underline',
+    }
+
+})
 
 
 export default Home;

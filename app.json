@@ -5,9 +5,10 @@
       "bundler": "metro"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-font"
     ],
-    "name": "brainware",
-    "slug": "brainware"
+    "name": "appcondos",
+    "slug": "appcondos"
   }
 }

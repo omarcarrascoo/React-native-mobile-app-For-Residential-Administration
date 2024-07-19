@@ -6,7 +6,8 @@ const ScreenHeaderProfile = ({ imageUrl, dimension, handlePress }) => {
   return (
     <TouchableOpacity style={styles.profileContainer} onPress={handlePress}>
       <Image
-        source={{uri:imageUrl}}
+        // source={{uri:imageUrl}}
+        source={imageUrl}
         resizeMode='cover'
         style={styles.profileImg(dimension)}
       />

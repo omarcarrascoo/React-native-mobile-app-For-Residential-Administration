@@ -9,6 +9,19 @@ import location from "../assets/icons/location.png";
 import chevronLeft from '../assets/icons/crw.png'
 import chevronRight from '../assets/icons/chevron-right.png'
 import close from '../assets/icons/close.png'
+import notificationBell from  '../assets/icons/vuesax/bold/notification-bing.png'
+import home from  '../assets/icons/menu/home.png'
+import banca from  '../assets/icons/menu/banca.png'
+import cupones from  '../assets/icons/menu/cupones.png'
+import amenidades from  '../assets/icons/menu/amenidades.png'
+import visitas from  '../assets/icons/menu/visitas.png'
+import exchange from  '../assets/icons/exchange.png'
+import filter2 from  '../assets/icons/filter2.png'
+import calendar from  '../assets/icons/calendar.png'
+import clock from  '../assets/icons/clock.png'
+import rowBack from  '../assets/icons/rowBack.png'
+import mulitUser from '../assets/icons/multiUser.png'
+import exito from '../assets/icons/exito.png'
 export default {
   heart,
   menu,
@@ -20,5 +33,19 @@ export default {
   location,
   chevronLeft,
   chevronRight,
-  close
+  close,
+  notificationBell,
+  home,
+  banca,
+  cupones,
+  amenidades,
+  visitas,
+  exchange,
+  filter2,
+  calendar,
+  clock,
+  rowBack,
+  mulitUser,
+  exito
+
 };
