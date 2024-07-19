@@ -9,6 +9,22 @@
       "expo-font"
     ],
     "name": "appcondos",
-    "slug": "appcondos"
+    "slug": "appcondos",
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "4f59c909-8283-4625-935d-5383c9d7fc7c"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/4f59c909-8283-4625-935d-5383c9d7fc7c"
+    },
+    "android": {},
+    "ios": {}
   }
 }

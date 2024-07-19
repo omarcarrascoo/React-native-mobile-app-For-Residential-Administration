@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
     },
     title:{
         fontSize: SIZES.xLarge,
-        fontWeight: 900,
         color: COLORS.MainText,
         marginTop:20
     },
