@@ -1,5 +1,6 @@
 import profile from "../assets/images/kemal.jpg";
 import logoBrainWare from '../assets/images/logo.png';
+import logotest2 from '../assets/images/logo2.png';
 import imageUp from '../assets/images/imgUpload.png';
 import d1 from '../assets/images/1.svg'
 import fondoHeader from '../assets/images/Fondoheader.png'
@@ -22,5 +23,6 @@ export default {
   test3,
   jd, 
   transparentBg,
-  bgWaveStyleCard
+  bgWaveStyleCard,
+  logotest2
 };

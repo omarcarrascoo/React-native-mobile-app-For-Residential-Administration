@@ -69,9 +69,10 @@ function Amenidades() {
                   <ReservationLister/>
                 </View>
                 }
-                <MainFooter/>
+                
             </View>
-        </SafeAreaView>
+            <MainFooter/>
+    </SafeAreaView>
   )
 }
 const styles = StyleSheet.create({
@@ -80,8 +81,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap:20,
     alignItems:'flex-end',
-    marginTop:50,
+    marginTop:45,
     marginBottom:20
+  },
+  container:{
+    flex:1
   }
 })
 export default Amenidades

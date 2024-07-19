@@ -27,9 +27,7 @@ function VistiasRecurrentesLister() {
         <TouchableOpacity style={{alignItems:'center', justifyContent: 'center', marginRight: 20}}>
             <Image source={images.jd}/>
             <Text style={{color:COLORS.gray2, marginTop:3}}>John Doe</Text>
-        </TouchableOpacity>
-        
-
+        </TouchableOpacity>        
     </ScrollView>
   )
 }

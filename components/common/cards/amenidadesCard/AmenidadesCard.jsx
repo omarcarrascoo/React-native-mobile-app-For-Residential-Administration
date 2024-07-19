@@ -35,11 +35,11 @@ const styles = StyleSheet.create({
     image:{
         width:"100%",
         borderRadius: 10,
-        minHeight: 220,
-        maxHeight: 220
+        minHeight: 180,
+        maxHeight: 180
     },
     container: {
-        width: 350,
+        width: 320,
         marginRight:15
     },
     textContainer:{

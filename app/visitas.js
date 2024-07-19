@@ -58,14 +58,15 @@ function visitas() {
 const styles = StyleSheet.create({
     container:{
         paddingHorizontal: SIZES.large,
-        paddingTop: 0
+        paddingTop: 0,
+        flex:1
     },
     subSection:{
-        paddingTop:30,
-        paddingBottom: 10
+        paddingTop:20,
+        paddingBottom: 5
     },
     subSection2:{
-        paddingTop:20,
+        paddingTop:10,
         justifyContent: 'space-between'
     },
     subtitleContainer:{
@@ -75,7 +76,7 @@ const styles = StyleSheet.create({
         marginBottom: SIZES.large
     },
     subtitle:{
-        fontSize:18,
+        fontSize:SIZES.medium,
         color:COLORS.MainText,
     },
     link:{

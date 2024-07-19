@@ -41,12 +41,7 @@ const Home = () =>{
                 options={{
                     autoHideHomeIndicator:true,
                     header: () =>(
-                        <View style={{minHeight:100, margin:0, paddingTop:70, alignItems:'center',  backgroundColor:COLORS.lightWhite}}>
-                            <View style={{justifyContent:'space-between', flexDirection: "row", width:"92%"}}>
-                                <ScreenHeaderLogo imageUrl={images.logoBrainWare} dimension='100%' />
-                                <ScreenHeaderProfile imageUrl={"http://localhost:9090/public/images/pp.png"} dimension = '100%'/>
-                            </View>
-                        </View>
+                        <MainHeader/>
                     )
                 }}
             />
@@ -61,18 +56,8 @@ const Home = () =>{
                 <Stack.Screen
                 options={{
                     autoHideHomeIndicator:true,
-                    // headerStyle: { backgroundColor: COLORS.lightWhite, height: 3000, padding: SIZES.medium, },
-                    // headerShadowVisible: false,
-                    // headerLeft: () => <ScreenHeaderLogo imageUrl={images.logoBrainWare} dimension='100%' />,
-                    // headerTitle: () => "",
-                    // headerRight: () => <ScreenHeaderProfile imageUrl={"https://pbs.twimg.com/media/FjU2lkcWYAgNG6d.jpg"} dimension='100%' />,
                     header: () =>(
-                        <View style={{minHeight:100, margin:0, paddingTop:70, alignItems:'center',  backgroundColor:COLORS.lightWhite}}>
-                            <View style={{justifyContent:'space-between', flexDirection: "row", width:"92%"}}>
-                                <ScreenHeaderLogo imageUrl={images.logoBrainWare} dimension='100%' />
-                                <ScreenHeaderProfile imageUrl={"http://localhost:9090/public/images/pp.png"} dimension = '100%'/>
-                            </View>
-                        </View>
+                        <MainHeader/>
                     )
                 }}
             />
@@ -99,7 +84,6 @@ const Home = () =>{
                     </View>
                     <EventListerSmallCard/>
                </View>
-               <View style={{minHeight:0}}/>
                <View style={styles.subSection}>
                     <View style={styles.subtitleContainer}>
                         <Text style={styles.subtitle}>Anuncios recientes</Text>
@@ -115,6 +99,7 @@ const Home = () =>{
 
 const styles = StyleSheet.create({
     container:{
+        flex: 1,
         paddingHorizontal: SIZES.large,
         paddingTop: SIZES.small
     },
@@ -128,7 +113,7 @@ const styles = StyleSheet.create({
         marginBottom: SIZES.large
     },
     subtitle:{
-        fontSize:22,
+        fontSize:SIZES.medium,
         color:COLORS.MainText,
     },
     link:{
