@@ -27,10 +27,10 @@ function visitas() {
                         <TouchableOpacity onPress={()=>{router.push('/formularioVisitas')}}  style={{width:100, height:100, backgroundColor:COLORS.MainPurple, borderRadius:20, alignItems:'center', justifyContent:'center'}}>
                             <Text style={{color:COLORS.white}}>Nueva visita</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={()=>{router.push('/formularioVisitas')}} style={{width:100, height:100, backgroundColor:COLORS.MainPurple, borderRadius:20, alignItems:'center', justifyContent:'center'}}>
+                        <TouchableOpacity onPress={()=>{router.push('/previousVisits')}} style={{width:100, height:100, backgroundColor:COLORS.MainPurple, borderRadius:20, alignItems:'center', justifyContent:'center'}}>
                             <Text style={{color:COLORS.white}}>Visita previa</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity onPress={()=>{router.push('/formularioVisitas')}} style={{width:100, height:100, backgroundColor:COLORS.MainPurple, borderRadius:20, alignItems:'center', justifyContent:'center'}}>
+                        <TouchableOpacity onPress={()=>{router.push('/formularioEncomiendas')}} style={{width:100, height:100, backgroundColor:COLORS.MainPurple, borderRadius:20, alignItems:'center', justifyContent:'center'}}>
                             <Text style={{color:COLORS.white}}>Encomiendas</Text>
                         </TouchableOpacity>
                         
@@ -39,14 +39,14 @@ function visitas() {
                 <View style={styles.subSection}>
                     <View style={styles.subtitleContainer}>
                         <Text style={styles.subtitle}>Para tus visitas recurrentes</Text>
-                        <TouchableOpacity><Text style={styles.link}>Ver mas</Text></TouchableOpacity>
+                        <TouchableOpacity onPress={()=>{router.push('/previousVisits')}}><Text style={styles.link}>Ver mas</Text></TouchableOpacity>
                     </View>
                     <VistiasRecurrentesLister/>
                </View>
                <View style={styles.subSection}>
                     <View style={styles.subtitleContainer}>
                         <Text style={styles.subtitle}>Tus próximas visitas</Text>
-                        <TouchableOpacity><Text style={styles.link} onPress={()=>{router.push('/calendario')}}>Ver Calendario</Text></TouchableOpacity>
+                        <TouchableOpacity><Text style={styles.link} onPress={()=>{router.push('/vistorsHistory')}}>Ver historial</Text></TouchableOpacity>
                     </View>
                     <EventListerSmallCard/>
                </View>

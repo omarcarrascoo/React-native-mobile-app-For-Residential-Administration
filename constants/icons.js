@@ -22,6 +22,17 @@ import clock from  '../assets/icons/clock.png'
 import rowBack from  '../assets/icons/rowBack.png'
 import mulitUser from '../assets/icons/multiUser.png'
 import exito from '../assets/icons/exito.png'
+import download from '../assets/icons/download.png'
+import user from  '../assets/icons/menu/user.png'
+import settings from  '../assets/icons/menu/settings.png'
+import help from  '../assets/icons/menu/help.png'
+import logout from  '../assets/icons/menu/logout.png'
+import info from  '../assets/icons/menu/info.png'
+
+
+
+
+
 export default {
   heart,
   menu,
@@ -46,6 +57,12 @@ export default {
   clock,
   rowBack,
   mulitUser,
-  exito
+  exito,
+  download,
+  user,
+  settings,
+  help,
+  logout,
+  info
 
 };

@@ -8,7 +8,7 @@ function EventListerSmallCard() {
   const [events, setEvents] = useState()
   return (
    <View style={styles.container}>
-        <Text style={{color:COLORS.gray, marginBottom:10}}>{currentDate}</Text>
+        {/* <Text style={{color:COLORS.gray, marginBottom:10}}>{currentDate}</Text> */}
         <ScrollView>
             <EventSmallCard/>
             <EventSmallCard/>

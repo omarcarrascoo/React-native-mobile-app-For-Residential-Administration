@@ -18,13 +18,13 @@ const MainFooter = () => {
                 <Image style={styles.icon} source={icons.amenidades}/>
             </TouchableOpacity>
             <TouchableOpacity onPress={()=>{router.push('/visitas')}}>
-                <Image style={styles.icon} source={icons.visitas}/>
+                <Image style={{width:35,height:30}} source={icons.visitas}/>
             </TouchableOpacity>
             <TouchableOpacity onPress={()=>{router.push('/banca')}}>
                 <Image style={styles.icon} source={icons.banca}/>
             </TouchableOpacity>
             <TouchableOpacity onPress={()=>{router.push('/cupones')}}>
-                <Image style={styles.icon} source={icons.cupones}/>
+                <Image style={{width:32,height:27}} source={icons.cupones}/>
             </TouchableOpacity>
         </View>
     );

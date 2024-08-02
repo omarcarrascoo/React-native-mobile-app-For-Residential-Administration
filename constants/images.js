@@ -11,6 +11,15 @@ import test3 from '../assets/images/test3.png'
 import jd from '../assets/images/JD.png'
 import transparentBg from '../assets/images/fondo-transparente.png'
 import bgWaveStyleCard from '../assets/images/fondo-cards.png'
+import bgCupons from '../assets/images/fondoCupones.png'
+import logoTest3 from '../assets/images/logoRabiota.png'
+import qrtest from '../assets/images/qrtest.png'
+import bgHeader from '../assets/images/bg-header.png'
+import testEvidence from '../assets/images/testEvidence.png'
+import SULOGO from '../assets/images/SULOGO.png'
+
+
+
 export default {
   profile,
   logoBrainWare,
@@ -24,5 +33,11 @@ export default {
   jd, 
   transparentBg,
   bgWaveStyleCard,
-  logotest2
+  logotest2,
+  bgCupons,
+  logoTest3,
+  qrtest,
+  bgHeader,
+  testEvidence,
+  SULOGO
 };

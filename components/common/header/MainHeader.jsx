@@ -40,11 +40,30 @@ const MainHeader = () =>{
                     </View>
                     <View>
                         <TouchableOpacity style={styles.menuItemBtn}><Text style={{color:COLORS.white}}>Apt.15-A, Condominio Apple</Text></TouchableOpacity>
-                        <TouchableOpacity style={styles.menuItem}><Text style={styles.menuItemText}>Perfil de usuario</Text></TouchableOpacity>
-                        <TouchableOpacity style={styles.menuItem}><Text style={styles.menuItemText}>Configuracion de interfaz</Text></TouchableOpacity>
-                        <TouchableOpacity style={styles.menuItem}><Text style={styles.menuItemText}>Sobre el condominio</Text></TouchableOpacity>
-                        <TouchableOpacity style={styles.menuItem}><Text style={styles.menuItemText}>Ayuda y apoyo</Text></TouchableOpacity>
-                        <TouchableOpacity style={styles.menuItem}><Text style={styles.menuItemText}>Cerrar Sesion</Text></TouchableOpacity>
+                        <TouchableOpacity style={styles.menuItem}>
+                            <Image source={icons.user} style={{width:25, height:25}}/>
+                            <Text style={styles.menuItemText}>Perfil de usuario</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.menuItem}> 
+                            <Image source={icons.settings} style={{width:25, height:25}}/> 
+                            <Text style={styles.menuItemText}>Configuracion de interfaz</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.menuItem}> 
+                            <Image source={icons.info} style={{width:25, height:25}}/> 
+                            <Text style={styles.menuItemText}>Sobre el condominio</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.menuItem}> 
+                            <Image source={icons.help} style={{width:25, height:25}}/> 
+                            <Text style={styles.menuItemText}>Ayuda y apoyo</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.menuItem}> 
+                            <Image source={icons.logout} style={{width:25, height:25}}/> 
+                            <Text style={styles.menuItemText}>Cerrar Sesion</Text>
+                        </TouchableOpacity>
+                        <View style={{flexDirection:"row", alignItems:'center', gap:10, justifyContent:'center', marginTop:40}}>
+                            <Text style={{fontSize:SIZES.xSmall, color:COLORS.gray}}>Desarrollado por</Text>
+                            <Image style={{width:75, height:25}} source={images.SULOGO}/>
+                        </View>
                     </View>
                 </View>
                 <View style={styles.bgDark}></View>
@@ -77,7 +96,10 @@ const styles = StyleSheet.create({
         paddingBottom:18,
         borderBottomColor: COLORS.gray,
         borderBottomWidth:.2,
-        marginBottom: 15
+        marginBottom: 15,
+        flexDirection:'row',
+        alignItems:'center',
+        gap:6
     },
     menuItemText:{
         fontSize: SIZES.medium,

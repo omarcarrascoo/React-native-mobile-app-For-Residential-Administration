@@ -3,11 +3,14 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import images from '../../../../constants/images'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { COLORS, SIZES } from '../../../../constants/theme'
+import { useRouter } from 'expo-router';
 
 function CuponCard({bgColor,  marked}) {
+    const router = useRouter()
     const [saved, setSaved] = useState (marked)
+
   return (
-    <View style={[styles.card, {backgroundColor:bgColor}]}>
+    <TouchableOpacity onPress={()=>{router.push("/cupon")}} style={[styles.card, {backgroundColor:bgColor}]}>
         <View style={{flexDirection:"row", gap:6}}>
             <Image style={{width:65, height:65}} source={images.logotest2}/>
             <View style={{maxWidth:"80%"}}>
@@ -19,7 +22,7 @@ function CuponCard({bgColor,  marked}) {
         <TouchableOpacity style={{height:"100%", paddingTop:SIZES.small}} onPress={()=>setSaved(!saved)}>
             {saved===true?<Icon name="bookmark" size={24} color={COLORS.MainPurple}/>:<Icon name="bookmark-o" size={24} color={COLORS.gray}/>}
         </TouchableOpacity>
-    </View>
+    </TouchableOpacity>
   )
 }
 

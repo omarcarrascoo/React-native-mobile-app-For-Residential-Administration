@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { SafeAreaView, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { COLORS, ScreenHeigh, SIZES } from '../constants/theme';
-import { Stack, useGlobalSearchParams, useLocalSearchParams } from 'expo-router';
+import { Stack, useGlobalSearchParams, useLocalSearchParams, useRouter } from 'expo-router';
 import MainHeader from '../components/common/header/MainHeader';
 import MainFooter from '../components/common/footer/MainFooter';
 import GeneralFilter from '../components/common/filters/GeneralFilter';
 import CommerceLister from '../components/commerceLister/CommerceLister';
 import CuponesLister from '../components/cuponesLister/CuponesLister';
 import MainSearchBar from '../components/common/searchBars/MainSearchBar';
+import { useRoute } from '@react-navigation/native';
 
 function cupones() {
+  const router = useRouter()
   const [menuCuponsView, setMenuCuponsView] = useState(false)
   const orderByFullOptions = [
     {title: "Más recientes", slug:"mas-recientes"},
@@ -69,7 +71,7 @@ function cupones() {
               <View>
                 <View style={{paddingHorizontal:SIZES.large, flexDirection:'row', alignItems:'center', justifyContent:'space-between', marginBottom: SIZES.large, marginTop:SIZES.xxLarge}}>
                   <Text style={[styles.subtitle]}>Cupones Recientes</Text>
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={()=>router.push("/allCupons")}>
                     <Text style={{color:COLORS.MainPurple}}>Ver todos</Text>
                   </TouchableOpacity>
                 </View>
