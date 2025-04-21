@@ -1,11 +1,22 @@
 import React from 'react'
-import { Text } from 'react-native'
+import { StyleSheet, Text } from 'react-native'
 import { COLORS, SIZES } from '../../../constants/theme'
 
-function CondoSmallText({text}) {
+function CondoSmallText({text, stylish}) {
   return (
-    <Text style={{color:COLORS.MainText, fontSize: SIZES.small, marginBottom:SIZES.small}}>{text}</Text>
+    <Text style={stylish?[styles.normal, styles]:styles.main}>{text}</Text>
   )
 }
 
+const styles = StyleSheet.create({
+  main:{
+    color:COLORS.MainText, 
+    fontSize: SIZES.small, 
+    marginBottom:SIZES.small
+  },
+  normal:{
+    color:COLORS.MainText, 
+    fontSize: SIZES.small, 
+  }
+})
 export default CondoSmallText

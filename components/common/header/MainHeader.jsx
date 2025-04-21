@@ -3,22 +3,42 @@ import images from "../../../constants/images";
 import { COLORS, SIZES } from "../../../constants/theme";
 import ScreenHeaderProfile from "./ScreenHeaderProfile";
 import icons from "../../../constants/icons";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { router } from "expo-router";
+import CondoModalAlert from "../modals/CondoModalAlert";
+import { user } from "../../../constants/user";
 
 
 const MainHeader = () =>{
 
     const [open, setOpen] = useState(false)
+    const [logoutModal, setLogOutModal] = useState(false)
+    const [headerToken, setHeaderToken] = useState()
+
+    const handdleLogaout = () =>{
+        setOpen(false)
+        setLogOutModal(true)
+    }
+    const setToken = async () =>{
+        const data = await getTokenFromStorage()
+        setHeaderToken(data)
+    }
+    
+    
+    useEffect(()=>{
+        setToken()
+    },[])
+    
     return(
         <>
         <ImageBackground source={images.fondoHeader} imageStyle={{borderEndStartRadius:20, borderEndEndRadius:20}} style={{minHeight:90, margin:0, paddingTop:60, paddingBottom: 30, alignItems:'center'}}>
             <View style={{justifyContent:'space-between', alignItems:'center', flexDirection: "row", width:"90%"}}>
                 <TouchableOpacity onPress={()=>setOpen(!open)}>
                     <View style={{flexDirection: 'row', alignItems:'center', gap:10}}>
-                        <ScreenHeaderProfile handlePress={()=>setOpen(!open)} imageUrl={images.profile} dimension = '100%'/>
+                        <ScreenHeaderProfile handlePress={()=>setOpen(!open)} imageUrl={user.Imagen_Perfil}  headerToken={headerToken}dimension = '100%'/>
                         <View>
-                            <Text style={{color:COLORS.lightWhite, fontSize:20, fontWeight:500}}><Text style={{fontWeight:800, }}>Hola,</Text>John Doe</Text>
-                            <Text style={{color:COLORS.lightWhite}}>Apt. 15-A</Text>
+                            <Text style={{color:COLORS.lightWhite, fontSize:20, fontWeight:500}}><Text style={{fontWeight:800, }}>Hola,</Text>{user.Primer_Nombre}</Text>
+                            <Text style={{color:COLORS.alert}}>Apt. 15-A</Text>
                         </View>
                     </View>
                 </TouchableOpacity>
@@ -30,33 +50,33 @@ const MainHeader = () =>{
                 </TouchableOpacity>
             </View>
         </ImageBackground>
-        {open === true ? (
+        {open === true && (
             <>
                 <View style={styles.menuContainer}>
                     <View style={{alignItems:"flex-end"}}><TouchableOpacity onPress={()=>setOpen(false)}><Text>Close</Text></TouchableOpacity></View>
                     <View style={{flexDirection: 'row', alignItems:'center', gap: 5, marginBottom: 30, marginTop: 20}}>
-                        <ScreenHeaderProfile imageUrl={images.profile} dimension = '100%'/>
+                        <ScreenHeaderProfile headerToken={headerToken} imageUrl={images.profile} dimension = '100%'/>
                         <Text style={{color:COLORS.MainText, fontSize:20, fontWeight:700}}>John Doe</Text>
                     </View>
                     <View>
                         <TouchableOpacity style={styles.menuItemBtn}><Text style={{color:COLORS.white}}>Apt.15-A, Condominio Apple</Text></TouchableOpacity>
-                        <TouchableOpacity style={styles.menuItem}>
+                        <TouchableOpacity onPress={()=>router.push("/userProfile")} style={styles.menuItem}>
                             <Image source={icons.user} style={{width:25, height:25}}/>
                             <Text style={styles.menuItemText}>Perfil de usuario</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.menuItem}> 
+                        <TouchableOpacity onPress={()=>router.push("/interfaz")} style={styles.menuItem}> 
                             <Image source={icons.settings} style={{width:25, height:25}}/> 
                             <Text style={styles.menuItemText}>Configuracion de interfaz</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.menuItem}> 
+                        <TouchableOpacity onPress={()=>router.push("/condoInfo")}  style={styles.menuItem}> 
                             <Image source={icons.info} style={{width:25, height:25}}/> 
                             <Text style={styles.menuItemText}>Sobre el condominio</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.menuItem}> 
+                        <TouchableOpacity onPress={()=>router.push("/help")} style={styles.menuItem}> 
                             <Image source={icons.help} style={{width:25, height:25}}/> 
                             <Text style={styles.menuItemText}>Ayuda y apoyo</Text>
                         </TouchableOpacity>
-                        <TouchableOpacity style={styles.menuItem}> 
+                        <TouchableOpacity onPress={()=>handdleLogaout()} style={styles.menuItem}> 
                             <Image source={icons.logout} style={{width:25, height:25}}/> 
                             <Text style={styles.menuItemText}>Cerrar Sesion</Text>
                         </TouchableOpacity>
@@ -68,7 +88,13 @@ const MainHeader = () =>{
                 </View>
                 <View style={styles.bgDark}></View>
             </>
-        ): <></>}
+        )}
+        {logoutModal === true && (
+            <>
+                <CondoModalAlert action2={()=>setLogOutModal(false)}/>
+                <View style={styles.bgDark}></View>
+            </>
+        )}
         </>
     )
 }
@@ -114,3 +140,4 @@ const styles = StyleSheet.create({
 })
 
 export default MainHeader
+

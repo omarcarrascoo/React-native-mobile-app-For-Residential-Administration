@@ -3,13 +3,13 @@ import { View, Text, StyleSheet } from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import { COLORS, SIZES } from '../../../constants/theme';
 
-function CondoDropdown({ label, options }) {
+function CondoDropdown({ label, options, stylish }) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState(options);
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, {...stylish}]}>
       <Text style={styles.label}>{label}</Text>
       <DropDownPicker
         open={open}
@@ -44,7 +44,9 @@ const styles = StyleSheet.create({
     borderColor: COLORS.gray,
     borderWidth: 1,
     borderRadius: 10,
+    zIndex:200
   },
 });
 
 export default CondoDropdown;
+

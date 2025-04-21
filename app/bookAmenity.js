@@ -1,5 +1,5 @@
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import images from "../constants/images";
@@ -7,23 +7,48 @@ import RowBackHeader from "../components/common/header/RowBackHeader";
 import { COLORS, SIZES } from "../constants/theme";
 import icons from "../constants/icons";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Colors } from "react-native/Libraries/NewAppScreen";
 import ModalExito from "../components/common/modals/ModalExito";
+import { getAmenidadById } from "../redux/amenidadesRedux";
+import { getTokenFromStorage } from "../redux/setToken.redux";
+import { BASE_URL2 } from "../redux/requestMethods.redux";
 
 
 function BookAmenity() {
     const router = useRouter();
     const params = useLocalSearchParams();
+    const {id} = useLocalSearchParams();
     const {editMode} = params
-    console.log(params);
-    console.log(editMode);
     const [invitadosCounter, setInvitadosCounter] = useState(0)
     const [modal, setModal] = useState(false)
+    const [amenidades, setAmenidades] = useState([])
+    const [headerToken, setHeaderToken] = useState()
+
+    const fetchAmenidades = async () =>{
+      const amennidadesInfo = await getAmenidadById(id)
+      setAmenidades(amennidadesInfo)
+      
+    }
+    useEffect(()=>{
+        const setToken = async () =>{
+            const data = await getTokenFromStorage()
+            setHeaderToken(data)
+        }
+        
+        
+        setToken()
+      fetchAmenidades()
+    },[])
+
+
+
     const handleNavigation= () =>{
-        router.push({
+        router.back({
             pathname:'/amenidades',
         })
     }
+
+    console.log(amenidades);
+    
     const [date, setDate] = useState()
     console.log(modal);
     const handleDecrese = () =>{
@@ -55,14 +80,15 @@ function BookAmenity() {
                     }}
                 />
                 <View style={styles.innerContainer}>
-                    <Image source={images.test3} style={{ height: 220 }} />
+                    <Image source={{ uri: `${BASE_URL2}${amenidades.Imagen_Amenidad}`, headers: {Authorization: `Zoho-oauthtoken ${headerToken}`}}} style={{ height: 220 }} />
                     <View style={styles.reservationContainer}>
-                        <Text style={[styles.title, {paddingBottom:10}]}>Reserva: Rooftop</Text>
+                        <Text style={[styles.title, {paddingBottom:10, color: COLORS.alert}]}>Reserva: Rooftop</Text>
                         <ScrollView >
                             <View style={styles.infoSection}>
-                                <View style={styles.infoItem}><Image style={{ width: 22, height: 24 }} source={icons.calendar} /><Text style={styles.infoSubTilte}>Lunes, 13 de mayo 2024</Text></View>
-                                <View style={styles.infoItem}><Image style={styles.infoIcon} source={icons.clock} /><Text style={styles.infoSubTilte}>1:00 PM - 6:00 PM</Text></View>
-                                <View style={styles.infoItem}><Image style={{ width: 24, height: 22 }} source={icons.mulitUser} /><Text style={styles.infoSubTilte}>10 invitados</Text></View>
+                                <Text style={styles.infoSubTilte}>{amenidades.Descripcion_Amenidad}</Text>
+                                {/* <View style={styles.infoItem}><Image style={{ width: 22, height: 24 }} source={icons.calendar} /><Text style={styles.infoSubTilte}>Lunes, 13 de mayo 2024</Text></View> */}
+                                <View style={styles.infoItem}><Image style={styles.infoIcon} source={icons.clock} /><Text style={styles.infoSubTilte}>{amenidades.Horarios_Amenidad}</Text></View>
+                                <View style={styles.infoItem}><Image style={{ width: 24, height: 22 }} source={icons.mulitUser} /><Text style={styles.infoSubTilte}>{amenidades.Capacidad} invitados</Text></View>
                             </View>
                             <View>
                                 <Text style={styles.title}>Dia y hora de tu reserva <Text style={{color:COLORS.alert, fontSize:SIZES.small}}>Obligatorio</Text></Text>

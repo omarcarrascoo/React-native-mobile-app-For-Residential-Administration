@@ -14,7 +14,7 @@ function previousVisits() {
     const router = useRouter()
 
     const handdleBack = () =>{
-        router.push("/visitas")
+        router.back()
       }
   return (
     <SafeAreaView>

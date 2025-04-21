@@ -1,22 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView, ScrollView, View, Text, TouchableOpacity, StyleSheet, ImageBackground } from 'react-native';
-import axios from 'axios';
 import { COLORS, SIZES } from '../constants/theme';
-import ScreenHeaderLogo from '../components/common/header/ScreenHeaderLogo';
-import ScreenHeaderProfile from '../components/common/header/ScreenHeaderProfile';
 import images from '../constants/images';
 import { Stack } from 'expo-router';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-import icons from '../constants/icons';
 import MainHeader from '../components/common/header/MainHeader';
-import EventListerSmallCard from '../components/eventsLister/EventListerSmallCard';
-import AnnauncementLister from '../components/announcementLister/AnnauncementLister';
 import MainFooter from '../components/common/footer/MainFooter';
-import VistiasRecurrentesLister from '../components/visitasRecurrentesLister/vistiasRecurrentesLister';
 import PaymentLister from '../components/paymentLister/PaymentLister';
+import { getUserPayments } from '../redux/payments.redux';
 
 
 function Banca() {
+
+  const [payments, setPayment] = useState([]);
+
+  const fetchUserPayments = async () => {
+    try {
+      const data = await getUserPayments(4386661000004923011);
+      setPayment(Array.isArray(data) ? data : []);
+    } catch (error) {
+      console.error('Error fetching reservations:', error);
+      setPayment([]);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserPayments();
+  }, []);
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.darkWhite }}>
       <Stack.Screen
@@ -31,14 +41,14 @@ function Banca() {
         <View style={styles.informationSection}>
           <ImageBackground imageStyle={{borderRadius: 10,}} source={images.bgWaveStyleCard} style={styles.accountCard}>
             <Text style={{color:COLORS.white, fontSize:SIZES.medium, marginBottom: 10}}>Estado de cuenta del mes</Text>
-            <Text style={{color:COLORS.white, fontSize:SIZES.medium, fontWeight:800}}>$00.00</Text>
+            <Text style={{color:COLORS.white, fontSize:SIZES.medium, fontWeight:800}}>${payments[0]?.Estado_Cuenta}</Text>
           </ImageBackground>
           <View style={styles.accountCard2}>
             <View>
               <Text style={{color:COLORS.MainPurple, fontSize:SIZES.small, marginBottom:4}}>Proximo Cobro</Text>
-              <Text style={{color:COLORS.MainPurple, fontSize:SIZES.medium, fontWeight:700}}>31 de Agosto</Text>
+              <Text style={{color:COLORS.MainPurple, fontSize:SIZES.medium, fontWeight:700}}>{payments[0]?.Fecha_Proximo_Pago}</Text>
             </View>
-            <Text style={{color:COLORS.MainPurple, fontSize:SIZES.medium}}>$300.00</Text>
+            <Text style={{color:COLORS.MainPurple, fontSize:SIZES.medium}}>${payments[0]?.Monto_Proximo_Pago}</Text>
           </View>
         </View>
         <View style={{padding:SIZES.large}}>

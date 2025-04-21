@@ -10,14 +10,14 @@ function visitas() {
     const router = useRouter();
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.darkWhite }}>
-            <Stack.Screen
+            {/* <Stack.Screen
                 options={{
                     autoHideHomeIndicator:true,
                     header: () =>(
                         <MainHeader/>
                     )
                 }}
-            />
+            /> */}
             <View showsVerticalScrollIndicator={false} style={styles.container}>
                 <View style={styles.subSection}>
                     <View style={styles.subtitleContainer}>

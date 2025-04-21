@@ -17,6 +17,8 @@ import qrtest from '../assets/images/qrtest.png'
 import bgHeader from '../assets/images/bg-header.png'
 import testEvidence from '../assets/images/testEvidence.png'
 import SULOGO from '../assets/images/SULOGO.png'
+import pdfIcon from '../assets/images/pdfIcon.png'
+
 
 
 
@@ -39,5 +41,6 @@ export default {
   qrtest,
   bgHeader,
   testEvidence,
-  SULOGO
+  SULOGO,
+  pdfIcon
 };

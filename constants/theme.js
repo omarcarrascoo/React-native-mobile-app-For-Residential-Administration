@@ -16,6 +16,7 @@ const COLORS = {
     SecondText: '#384668',
     blackTillBack: "#0000007a",
     alert: "#ab5757",
+    alert2: "#EB5757",
     tillBlue: "#D1D8F4",
     tillPurple: "#D1D8F4"
   };

@@ -3,11 +3,11 @@ import { ImageBackground, StyleSheet, Text, View } from 'react-native'
 import { COLORS } from '../../../../constants/theme'
 import images from '../../../../constants/images'
 
-function EventSmallCard() {
+function EventSmallCard({event}) {
   return (
     <ImageBackground imageStyle={{borderRadius: 10,}} source={images.smCardBg} style={styles.card}>
-        <Text style={{color:COLORS.lightWhite}}>Lorem ipsum</Text>
-        <Text style={{color:COLORS.lightWhite}}>12:00 A.M.</Text>
+        <Text style={{color:COLORS.lightWhite}}>{event.Titulo_Evento}</Text>
+        <Text style={{color:COLORS.lightWhite}}>{event.Hora_Evento}</Text>
     </ImageBackground>
   )
 }

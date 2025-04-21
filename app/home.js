@@ -7,28 +7,37 @@ import MainHeader from '../components/common/header/MainHeader';
 import EventListerSmallCard from '../components/eventsLister/EventListerSmallCard';
 import AnnauncementLister from '../components/announcementLister/AnnauncementLister';
 import MainFooter from '../components/common/footer/MainFooter';
+import { setTokenInStorage } from '../redux/setToken.redux';
+import { getNextEvents } from '../redux/eventosRedux';
 
 const Home = () =>{
-    const [challenges, setChallenges] = useState([]);
+    const [myEvents, setMyEnvents] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const router = useRouter()
 
-    useEffect(() => {
-        const fetchChallenges = async () => {
-            try {
-                const response = await axios.get('http://localhost:9090/api/challenges');
-                setChallenges(response.data);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching challenges:', error);
-                setError('Error fetching challenges');
-                setLoading(false);
-            }
-        };
 
-    }, []);
 
+    const fetchData = async () => {
+        const myEventsData = await getNextEvents()
+        setMyEnvents(myEventsData)
+        setLoading(false)
+    };
+    const readyApp = async() =>{
+        try {
+            console.log("Setting the app");
+            await setTokenInStorage()
+            
+        } catch (error) {
+            console.warn(error);
+        }
+    }
+
+    useEffect(()=> {
+        setLoading(true)
+        readyApp()
+        fetchData()
+    },[])
     if (loading) {
         return (
             <SafeAreaView style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -63,21 +72,21 @@ const Home = () =>{
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.darkWhite }}>
-            <Stack.Screen
+            {/* <Stack.Screen
                 options={{
                     autoHideHomeIndicator:true,
                     header: () =>(
                         <MainHeader/>
                     )
                 }}
-            />
+            /> */}
             <View showsVerticalScrollIndicator={false} style={styles.container}>
                <View style={styles.subSection}>
                     <View style={styles.subtitleContainer}>
                         <Text style={styles.subtitle}>Próximos eventos</Text>
                         <TouchableOpacity onPress={()=>{router.push('/calendario')}}><Text style={styles.link}>Ver Calendario</Text></TouchableOpacity>
                     </View>
-                    <EventListerSmallCard/>
+                    <EventListerSmallCard events={myEvents}/>
                </View>
                <View style={styles.subSection}>
                     <View style={styles.subtitleContainer}>

@@ -82,7 +82,7 @@ function cupones() {
             </>
             : 
             <View style={{paddingHorizontal:SIZES.large}}>
-              <CuponesLister mark={true} styles={{minHeight:350, maxHeight:350}}/>
+              <CuponesLister favourites={menuCuponsView} mark={true} styles={{minHeight:350, maxHeight:350}}/>
             </View>
           }
         </View>

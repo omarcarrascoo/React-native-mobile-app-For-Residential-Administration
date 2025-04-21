@@ -3,14 +3,14 @@ import { ImageBackground, StyleSheet, Text, View } from 'react-native'
 import { COLORS, SIZES } from '../../../../constants/theme'
 import images from '../../../../constants/images'
 
-function PaymentSmallCard() {
+function PaymentSmallCard({paymentData}) {
   return (
     <ImageBackground imageStyle={{borderRadius: 10,}} source={images.smCardBg} style={styles.card}>
         <View>
-            <Text style={{color:COLORS.lightWhite, fontSize:SIZES.small,marginBottom: 5}}>Pago Alquier Julio</Text>
-            <Text style={{color:COLORS.lightWhite, fontSize: SIZES.small}}>$300.00</Text>
+            <Text style={{color:COLORS.lightWhite, fontSize:SIZES.small,marginBottom: 5}}>{paymentData.display_value}</Text>
+            <Text style={{color:COLORS.alert, fontSize: SIZES.small }}>$300.00</Text>
         </View>
-        <Text style={{color:COLORS.lightWhite, fontSize: SIZES.small}}>Viernes, 28 de junio</Text>
+        <Text style={{color:COLORS.alert, fontSize: SIZES.small}}>Viernes, 28 de junio</Text>
     </ImageBackground>
   )
 }
